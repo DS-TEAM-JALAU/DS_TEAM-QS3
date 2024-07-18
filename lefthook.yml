@@ -20,4 +20,4 @@ pre-commit:
       run: yarn eslint {staged_files}
     test:
       glob: "*.js"
-      run: yarn test
+      run: npm test
