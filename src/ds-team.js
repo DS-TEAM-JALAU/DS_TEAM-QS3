@@ -1,6 +1,6 @@
 import newman from "newman";
 
-const dsteam = () => {
+export const dsteam = () => {
   return new Promise((resolve, reject) => {
     newman.run(
       {
@@ -11,7 +11,7 @@ const dsteam = () => {
         if (error) {
           reject(error);
         }
-        console.log("Collection run complete");
+        console.log("Finalização dos testes da DS Team");
         resolve();
       }
     );

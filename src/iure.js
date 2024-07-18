@@ -11,7 +11,7 @@ export const iure = () => {
         if (error) {
           return reject(error);
         }
-        console.log("Collection run complete");
+        console.log("Finalização dos testes da Iure");
         resolve();
       }
     );

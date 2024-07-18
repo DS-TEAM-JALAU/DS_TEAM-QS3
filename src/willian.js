@@ -1,6 +1,6 @@
 import newman from "newman";
 
-const willian = () => {
+export const willian = () => {
   return new Promise((resolve, reject) => {
     newman.run(
       {
@@ -11,7 +11,7 @@ const willian = () => {
         if (error) {
           reject(error);
         }
-        console.log("Collection run complete");
+        console.log("Finalização dos testes da Willian");
         resolve();
       }
     );
