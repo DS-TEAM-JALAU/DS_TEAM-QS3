@@ -55,4 +55,12 @@ describe("Iure", () => {
       .catch((err) => (status = err.response.status));
     expect(status).toBe(400);
   });
+
+  test("should return status bad request a invalid 'cidade' was provided", async () => {
+    let status;
+    await axios
+      .get("https://viacep.com.br/ws/RS/Po/Domingos/json/")
+      .catch((err) => (status = err.response.status));
+    expect(status).toBe(400);
+  });
 });

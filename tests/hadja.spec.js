@@ -4,6 +4,12 @@ const makeRequest = () => {};
 
 jest.setTimeout(30000);
 
-describe("Willian", () => {
-  test("should ", async () => {});
+describe("Hadja", () => {
+  test("should return json format if url param type json was provided", async () => {
+    const { headers } = await axios.get(
+      "https://viacep.com.br/ws/01001000/json/"
+    );
+
+    expect(headers.get("Content-Type").split(";")[0]).toBe("application/json");
+  });
 });
