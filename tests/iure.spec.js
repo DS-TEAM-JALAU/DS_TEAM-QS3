@@ -31,10 +31,15 @@ const validResponse = [
   },
 ];
 
+let url;
+beforeAll(() => {
+  url = "https://viacep.com.br";
+});
+
 describe("Iure", () => {
   test("should return valid response when use + in 'logradouro'", async () => {
     const { data } = await axios.get(
-      "https://viacep.com.br/ws/RS/Porto Alegre/Domingos+Jose/json/"
+      url + "/ws/RS/Porto Alegre/Domingos+Jose/json/"
     );
 
     expect(data).toStrictEqual(validResponse);
@@ -42,7 +47,7 @@ describe("Iure", () => {
 
   test("should return valid response when use space in 'logradouro'", async () => {
     const { data } = await axios.get(
-      "https://viacep.com.br/ws/RS/Porto Alegre/Domingos Jose/json/"
+      url + "/ws/RS/Porto Alegre/Domingos Jose/json/"
     );
 
     expect(data).toStrictEqual(validResponse);
@@ -51,7 +56,7 @@ describe("Iure", () => {
   test("should return status bad request a invalid 'logradouro' was provided", async () => {
     let status;
     await axios
-      .get("https://viacep.com.br/ws/RS/Porto Alegre/Do/json/")
+      .get(url + "/ws/RS/Porto Alegre/Do/json/")
       .catch((err) => (status = err.response.status));
     expect(status).toBe(400);
   });
@@ -59,7 +64,7 @@ describe("Iure", () => {
   test("should return status bad request a invalid 'cidade' was provided", async () => {
     let status;
     await axios
-      .get("https://viacep.com.br/ws/RS/Po/Domingos/json/")
+      .get(url + "/ws/RS/Po/Domingos/json/")
       .catch((err) => (status = err.response.status));
     expect(status).toBe(400);
   });
