@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "1abbb0d8-c481-4d81-88e9-e3119e99c237",
+		"name": "Ds-Team request",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30345881",
+		"_collection_link": "https://ds-team-3942.postman.co/workspace/QA3---DS-TEAM---VIACEP~38141300-3dfd-4485-bfd8-74c0cb8d4f8e/collection/36934195-1abbb0d8-c481-4d81-88e9-e3119e99c237?action=share&source=collection_link&creator=30345881"
+	},
+	"item": [
+		{
+			"name": "Verify if is a callback",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"should return jsonp format if callback param provided\", function(){",
+							"    const contentType = pm.response.headers.get(\"Content-Type\").split(\";\")[0]",
+							"",
+							"    pm.expect(contentType).to.eql(\"application/javascript\");",
+							"})",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://viacep.com.br/ws/01001000/json"
+			},
+			"response": []
+		},
+		{
+			"name": "Verify if a xml is returned with UTF-8 type",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"should return a XML type with encoding equal UTF-8\", function () {",
+							"    const responseBody = pm.response.text();",
+							"    const encoding = responseBody.split(\"\\\"\")[3]",
+							"",
+							"    pm.expect(\"UTF-8\").to.eql(encoding);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://viacep.com.br/ws/01001000/xml/"
+			},
+			"response": []
+		},
+		{
+			"name": "Verify if the connection is keep-alive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"should return a connection header with keep-alive\", function () {",
+							"    const responseBody = pm.response.headers",
+							"",
+							"    pm.expect(\"keep-alive\").to.eql(responseBody.get(\"Connection\"));",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://viacep.com.br/ws/01001000/json"
+			},
+			"response": []
+		}
+	]
+}
