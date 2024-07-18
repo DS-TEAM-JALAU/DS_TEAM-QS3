@@ -1,5 +1,7 @@
 import axios from "axios";
 
+jest.setTimeout(30000);
+
 describe("Willian", () => {
   test("should return a limit of 50 ceps", async () => {
     const { data } = await axios.get(
