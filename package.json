@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "jest  --watch"
+    "test": "jest  --watch",
+    "hook": "lefthook install"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.9",
     "@babel/preset-env": "^7.24.8",
-    "babel-jest": "^29.7.0"
+    "babel-jest": "^29.7.0",
+    "lefthook": "^1.7.3"
   }
 }
