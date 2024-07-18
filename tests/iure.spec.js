@@ -47,4 +47,12 @@ describe("Iure", () => {
 
     expect(data).toStrictEqual(validResponse);
   });
+
+  test("should return status bad request a invalid 'logradouro' was provided", async () => {
+    let status;
+    await axios
+      .get("https://viacep.com.br/ws/RS/Porto Alegre/Do/json/")
+      .catch((err) => (status = err.response.status));
+    expect(status).toBe(400);
+  });
 });
