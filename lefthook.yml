@@ -19,5 +19,5 @@ pre-commit:
       glob: "*.{js,ts,jsx,tsx}"
       run: yarn eslint {staged_files}
     test:
-      glob: "*.ts"
+      glob: "*.js"
       run: yarn test
