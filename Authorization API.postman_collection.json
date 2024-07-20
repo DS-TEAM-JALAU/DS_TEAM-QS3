@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "3b9458ab-23b4-4804-a028-d7c642d53c3b",
+		"name": "Authorization API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36934195",
+		"_collection_link": "https://ds-team-3942.postman.co/workspace/QA3---DS-TEAM---VIACEP~38141300-3dfd-4485-bfd8-74c0cb8d4f8e/collection/36934195-3b9458ab-23b4-4804-a028-d7c642d53c3b?action=share&source=collection_link&creator=36934195"
+	},
+	"item": [
+		{
+			"name": "Single Detection (Valid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Language detection successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.detections[0].language).to.not.be.undefined;",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "40a72954e6835527641fea64b625ad1e",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://ws.detectlanguage.com/0.2/detect?q=hello world",
+					"protocol": "https",
+					"host": [
+						"ws",
+						"detectlanguage",
+						"com"
+					],
+					"path": [
+						"0.2",
+						"detect"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "hello world"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Single Detection (invalid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"Error message for missing API key\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error.message).to.include(\"Invalid API key\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://ws.detectlanguage.com/0.2/detect?q=aaa",
+					"protocol": "https",
+					"host": [
+						"ws",
+						"detectlanguage",
+						"com"
+					],
+					"path": [
+						"0.2",
+						"detect"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "aaa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Single Detection (invalid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Error message for empty query\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.detections.length).to.equal(0)",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "40a72954e6835527641fea64b625ad1e",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://ws.detectlanguage.com/0.2/detect?q=",
+					"protocol": "https",
+					"host": [
+						"ws",
+						"detectlanguage",
+						"com"
+					],
+					"path": [
+						"0.2",
+						"detect"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Batch detection (valid)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "40a72954e6835527641fea64b625ad1e",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ws.detectlanguage.com/0.2/detect?q[]=hello world&q[]=Buenos dias",
+					"protocol": "https",
+					"host": [
+						"ws",
+						"detectlanguage",
+						"com"
+					],
+					"path": [
+						"0.2",
+						"detect"
+					],
+					"query": [
+						{
+							"key": "q[]",
+							"value": "hello world"
+						},
+						{
+							"key": "q[]",
+							"value": "Buenos dias"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Batch detection (invalid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"Error message for missing API key\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error.message).to.include(\"Invalid API key\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ws.detectlanguage.com/0.2/detect?q[]=hello world&q[]=Buenos dias",
+					"protocol": "https",
+					"host": [
+						"ws",
+						"detectlanguage",
+						"com"
+					],
+					"path": [
+						"0.2",
+						"detect"
+					],
+					"query": [
+						{
+							"key": "q[]",
+							"value": "hello world"
+						},
+						{
+							"key": "q[]",
+							"value": "Buenos dias"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Batch detection (invalid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Error message for empty query\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.detections.length).to.equal(2)",
+							"    pm.expect(jsonData.data.detections[0].length).to.equal(0)",
+							"    pm.expect(jsonData.data.detections[1].length).to.equal(0)",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "40a72954e6835527641fea64b625ad1e",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ws.detectlanguage.com/0.2/detect?q[]=&q[]=",
+					"protocol": "https",
+					"host": [
+						"ws",
+						"detectlanguage",
+						"com"
+					],
+					"path": [
+						"0.2",
+						"detect"
+					],
+					"query": [
+						{
+							"key": "q[]",
+							"value": ""
+						},
+						{
+							"key": "q[]",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has date, requests, bytes, plan, plan_expires, daily_requests_limit, daily_bytes_limit, and status fields\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('date');",
+							"    pm.expect(jsonData).to.have.property('requests');",
+							"    pm.expect(jsonData).to.have.property('bytes');",
+							"    pm.expect(jsonData).to.have.property('plan');",
+							"    pm.expect(jsonData).to.have.property('plan_expires');",
+							"    pm.expect(jsonData).to.have.property('daily_requests_limit');",
+							"    pm.expect(jsonData).to.have.property('daily_bytes_limit');",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"});",
+							"",
+							"pm.test(\"Status is ACTIVE\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.equal('ACTIVE');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "40a72954e6835527641fea64b625ad1e",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ws.detectlanguage.com/0.2/user/status",
+					"protocol": "https",
+					"host": [
+						"ws",
+						"detectlanguage",
+						"com"
+					],
+					"path": [
+						"0.2",
+						"user",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

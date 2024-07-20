@@ -1,5 +1,0 @@
-# DS_TEAM-QS3
-
-In this activity, the objective was to use the Detect Language API to create and test use cases in Postman, taking into account the necessary authentication. Participants were required to create one positive test case and two negative test cases for Single Detection, one positive test case and two negative test cases for Batch Detection, and one test case to check the Account Status. Each test case should include verifications to ensure that the API responses are correct, such as HTTP status codes, expected response fields, and appropriate error messages. After creating and verifying the test cases, participants were to use Postman's "Share" feature to generate a collection link and upload the generated link to their GitLab/GitHub repository. The repository link was to be submitted on Canvas this week.
-
-We've done all the Postman implementations of what was requested for this extra activity and we're making the Postman collection containing all the authentication-related tests available via
