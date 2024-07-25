@@ -8,7 +8,8 @@
 	},
 	"scripts": {
 		"test": "jest",
-		"test:dev": "jest --watch"
+		"test:dev": "jest --watch",
+		"lint:fix": "biome check --write --unsafe"
 	},
 	"keywords": [],
 	"author": "",
