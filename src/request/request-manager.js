@@ -4,7 +4,7 @@ class AxiosSingleton {
   constructor() {
     if (!AxiosSingleton.instance) {
       this.axiosInstance = axios.create({
-        baseURL: 'https://viacep.com/'
+        baseURL: 'https://viacep.com.br/'
     });
 
       AxiosSingleton.instance = this;
