@@ -18,7 +18,11 @@ Para rodarmos o código, o comando "npm test" irá fazê-lo rodar.
 # Autores 
 
 Hadja Costa - https://github.com/HadjaLorena
+
 Ivanildo Iure - https://github.com/Iure-Lima
+
 Willian Cavalcanti - https://github.com/Williancc1557
+
 Roger Rocha - https://github.com/RogerARocha
+
 Thomas Henry Trindade - https://github.com/ThomasHenry011
