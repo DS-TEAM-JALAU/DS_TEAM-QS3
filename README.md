@@ -4,7 +4,9 @@ Contém todos os códigos feitos para a cadeira de engenharia de qualidade de so
 # Dependências 
 
 https://www.npmjs.com/package/axios - Biblioteca para realizar requisições HTTP.
+
 https://www.npmjs.com/package/jest - Framework de testes em JavaScript.
+
 https://www.npmjs.com/package/pino - Biblioteca de logging de alta performance.
 
 # Como rodar o código 
