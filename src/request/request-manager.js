@@ -1,15 +1,15 @@
-import axios from 'axios';
+import axios from "axios";
+import env from "../config/env.js";
 
 class AxiosSingleton {
   constructor() {
     if (!AxiosSingleton.instance) {
       this.axiosInstance = axios.create({
-        baseURL: 'https://viacep.com.br/'
-    });
+        baseURL: env.URL,
+      });
 
       AxiosSingleton.instance = this;
     }
-
   }
 
   getInstance() {
