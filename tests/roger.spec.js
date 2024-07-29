@@ -1,17 +1,16 @@
-import axios from "axios";
-import env from "../src/config/env.js";
+import { AxiosSingleton } from "../src/request/request-manager.js";
 
 jest.setTimeout(30000);
 
-let url;
+let axiosInstance;
 beforeAll(() => {
-  url = env.URL;
+  axiosInstance = AxiosSingleton.getInstance();
 });
 
 describe("Roger", () => {
   test("should return status code 400 BAD REQUEST", async () => {
     let status;
-    await axios.get(`${url}ws/010010000/json/`).catch((err) => {
+    await axiosInstance.get(`/ws/010010000/json/`).catch((err) => {
       status = err.response.status;
     });
     expect(status).toBe(400);
@@ -19,7 +18,7 @@ describe("Roger", () => {
 
   test("should return status code 400 BAD REQUEST", async () => {
     let status;
-    await axios.get(`${url}ws/0100100/json/`).catch((err) => {
+    await axiosInstance.get(`/ws/0100100/json/`).catch((err) => {
       status = err.response.status;
     });
     expect(status).toBe(400);

@@ -1,23 +1,20 @@
 import axios from "axios";
 import env from "../config/env.js";
 
-class AxiosSingleton {
-  constructor() {
-    if (!AxiosSingleton.instance) {
-      this.axiosInstance = axios.create({
+export class AxiosSingleton {
+  static instance
+
+  static getInstance() {
+    if (!this.instance) {
+      this.instance = axios.create({
         baseURL: env.URL,
+        timeout: 10000,
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
-
-      AxiosSingleton.instance = this;
     }
-  }
 
-  getInstance() {
-    return this.axiosInstance;
+    return this.instance
   }
 }
-
-const instance = new AxiosSingleton();
-Object.freeze(instance);
-
-export default instance;

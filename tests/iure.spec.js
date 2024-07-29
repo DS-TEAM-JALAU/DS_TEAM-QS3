@@ -1,5 +1,4 @@
-import axios from "axios";
-import env from "../src/config/env.js";
+import { AxiosSingleton } from "../src/request/request-manager.js";
 
 jest.setTimeout(30000);
 
@@ -32,23 +31,24 @@ const validResponse = [
   },
 ];
 
-let url;
+
+let axiosInstance;
 beforeAll(() => {
-  url = env.URL;
+  axiosInstance = AxiosSingleton.getInstance();
 });
 
 describe("Iure", () => {
   test("should return valid response when use + in 'logradouro'", async () => {
-    const { data } = await axios.get(
-      `${url}ws/RS/Porto Alegre/Domingos+Jose/json/`
+    const { data } = await axiosInstance.get(
+      `/ws/RS/Porto Alegre/Domingos+Jose/json/`
     );
 
     expect(data).toStrictEqual(validResponse);
   });
 
   test("should return valid response when use space in 'logradouro'", async () => {
-    const { data } = await axios.get(
-      `${url}ws/RS/Porto Alegre/Domingos Jose/json/`
+    const { data } = await axiosInstance.get(
+      `/ws/RS/Porto Alegre/Domingos Jose/json/`
     );
 
     expect(data).toStrictEqual(validResponse);
@@ -56,7 +56,7 @@ describe("Iure", () => {
 
   test("should return status bad request a invalid 'logradouro' was provided", async () => {
     let status;
-    await axios.get(`${url}ws/RS/Porto Alegre/Do/json/`).catch((err) => {
+    await axiosInstance.get(`/ws/RS/Porto Alegre/Do/json/`).catch((err) => {
       status = err.response.status;
     });
 
@@ -65,7 +65,7 @@ describe("Iure", () => {
 
   test("should return status bad request a invalid 'cidade' was provided", async () => {
     let status;
-    await axios.get(`${url}ws/RS/Po/Domingos/json/`).catch((err) => {
+    await axiosInstance.get(`/ws/RS/Po/Domingos/json/`).catch((err) => {
       status = err.response.status;
     });
 
