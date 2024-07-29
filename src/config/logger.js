@@ -19,7 +19,7 @@ const transport = pino.transport({
 
 export const logger = pino(
 	{
-		enabled: !(process.env.JEST_WORKER_ID !== undefined),
+		//enabled: !(process.env.JEST_WORKER_ID !== undefined),
 		level: "debug",
 	},
 	transport,

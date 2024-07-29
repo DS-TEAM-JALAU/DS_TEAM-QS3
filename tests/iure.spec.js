@@ -1,4 +1,5 @@
 import { AxiosSingleton } from "../src/request/request-manager.js";
+import { logger } from "../src/config/logger.js";
 
 jest.setTimeout(30000);
 
@@ -35,26 +36,32 @@ const validResponse = [
 let axiosInstance;
 beforeAll(() => {
   axiosInstance = AxiosSingleton.getInstance();
+  logger.info("Set Request Manager Instance in the Iure Test")
 });
 
 describe("Iure", () => {
   test("should return valid response when use + in 'logradouro'", async () => {
+    logger.info("Running should return valid response when use + in 'logradouro")
     const { data } = await axiosInstance.get(
       `/ws/RS/Porto Alegre/Domingos+Jose/json/`
     );
 
     expect(data).toStrictEqual(validResponse);
+    
   });
 
   test("should return valid response when use space in 'logradouro'", async () => {
+    logger.info("Running should return valid response when use space in 'logradouro'")
     const { data } = await axiosInstance.get(
       `/ws/RS/Porto Alegre/Domingos Jose/json/`
     );
 
     expect(data).toStrictEqual(validResponse);
+    
   });
 
   test("should return status bad request a invalid 'logradouro' was provided", async () => {
+    logger.info("Running should return status bad request a invalid 'logradouro' was provided")
     let status;
     await axiosInstance.get(`/ws/RS/Porto Alegre/Do/json/`).catch((err) => {
       status = err.response.status;
@@ -64,6 +71,7 @@ describe("Iure", () => {
   });
 
   test("should return status bad request a invalid 'cidade' was provided", async () => {
+    logger.info("Running should return status bad request a invalid 'cidade' was provided")
     let status;
     await axiosInstance.get(`/ws/RS/Po/Domingos/json/`).catch((err) => {
       status = err.response.status;
