@@ -26,7 +26,6 @@ describe("Json format", () => {
     await axiosInstance.get(`/ws/01001000/json/`).then((data) => {
       statusCode = data.status;
     });
-    await axiosInstance.get(`/ws/01001000/json/`).then((data) => console.log(data))
 
     expect(statusCode).toBe(200);
   });
