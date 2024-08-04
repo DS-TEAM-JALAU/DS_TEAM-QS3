@@ -26,7 +26,7 @@ describe("Logradouro with plus @low @functional @regression", () => {
       `/ws/RS/Porto Alegre/Domingos+Jose/json/`
     ).then((response) => statusCode = response.status);
 
-    expect(statusCode).toStrictEqual(200);
+    expect(statusCode).toBe(200);
   });
 
   test("should return status text ok", async () => {
@@ -36,6 +36,6 @@ describe("Logradouro with plus @low @functional @regression", () => {
       `/ws/RS/Porto Alegre/Domingos+Jose/json/`
     ).then((response) => statusText = response.statusText);
 
-    expect(statusText).toStrictEqual("OK");
+    expect(statusText).toBe("OK");
   });
 });
