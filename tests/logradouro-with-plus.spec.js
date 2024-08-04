@@ -16,7 +16,7 @@ describe("Logradouro with plus @low @functional @regression", () => {
       `/ws/RS/Porto Alegre/Domingos+Jose/json/`
     );
 
-    expect(data.length).toStrictEqual(3);
+    expect(data.length).toBe(3);
   });
 
   test("should return status code 200", async () => {
