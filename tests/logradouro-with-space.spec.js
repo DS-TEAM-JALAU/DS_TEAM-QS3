@@ -6,14 +6,14 @@ jest.setTimeout(30000);
 let axiosInstance;
 beforeAll(() => {
   axiosInstance = AxiosSingleton.getInstance();
-  logger.info("Set Request Manager Instance in the Logradouro with plus Test")
+  logger.info("Set Request Manager Instance in the Logradouro with space Test")
 });
 
-describe("Logradouro with plus", () => {
-  test("should return valid response when use + in 'logradouro'", async () => {
-    logger.info("Running should return valid response when use + in 'logradouro")
+describe("Logradouro with space", () => {
+  test("should return valid response when use space in 'logradouro'", async () => {
+    logger.info("Running should return valid response when use space in 'logradouro")
     const { data } = await axiosInstance.get(
-      `/ws/RS/Porto Alegre/Domingos+Jose/json/`
+      `/ws/RS/Porto Alegre/Domingos Jose/json/`
     );
 
     expect(data.length).toStrictEqual(2);
@@ -23,7 +23,7 @@ describe("Logradouro with plus", () => {
     logger.info("Running should return status code 200")
     let statusCode;
     await axiosInstance.get(
-      `/ws/RS/Porto Alegre/Domingos+Jose/json/`
+      `/ws/RS/Porto Alegre/Domingos Jose/json/`
     ).then((response) => statusCode = response.status);
 
     expect(statusCode).toStrictEqual(200);
@@ -33,7 +33,7 @@ describe("Logradouro with plus", () => {
     logger.info("Running should return status text ok")
     let statusText;
     await axiosInstance.get(
-      `/ws/RS/Porto Alegre/Domingos+Jose/json/`
+      `/ws/RS/Porto Alegre/Domingos Jose/json/`
     ).then((response) => statusText = response.statusText);
 
     expect(statusText).toStrictEqual("OK");
