@@ -6,17 +6,11 @@ jest.setTimeout(70 * 3000);
 let axiosInstance;
 beforeAll(() => {
   axiosInstance = AxiosSingleton.getInstance();
-  logger.info("Set Request Manager Instance in the Willian Test");
+  logger.info("Set Request Manager Instance in the invalid url");
 });
 
-describe("Willian", () => {
-  test("should return a limit of 50 ceps @integration git ", async () => {
-    logger.info("Running should return a limit of 50 ceps");
-    const { data } = await axiosInstance.get(`/ws/RS/Porto Alegre/Dom/json/`);
-    expect(data.length).toBe(50);
-  });
-
-  test("should return status code 400 if an invalid url was provided @smoke", async () => {
+describe("Invalid url", () => {
+  test("should return status code 400 if an invalid url was provided", async () => {
     logger.info(
       "Running should return status code 400 if an invalid url was provided"
     );
@@ -29,5 +23,20 @@ describe("Willian", () => {
       });
 
     expect(statusCode).toBe(400);
+  });
+
+  test("should return status text Bad Request", async () => {
+    logger.info(
+      "Running should return status text Bad Request"
+    );
+    let statusText;
+
+    await axiosInstance
+      .get(`/ws/RS/Porto Alegre/Domingos/jso/`)
+      .catch((err) => {
+        statusText = err.response.statusText;
+      });
+
+    expect(statusText).toBe('Bad Request');
   });
 });
