@@ -9,7 +9,7 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in the Logradouro with space Test")
 });
 
-describe("Logradouro with space @low", () => {
+describe("Logradouro with space @low @functional @regression", () => {
   test("should return valid response when use space in 'logradouro'", async () => {
     logger.info("Running should return valid response when use space in 'logradouro")
     const { data } = await axiosInstance.get(

@@ -11,7 +11,7 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in the Invalid Cidade Test")
 });
 
-describe(" Invalid Cidade @high", () => {
+describe(" Invalid Cidade @high @error @regression", () => {
 
   test("should return status 400 a invalid 'cidade' was provided", async () => {
     logger.info("Running should return status 400 a invalid 'cidade' was provided")

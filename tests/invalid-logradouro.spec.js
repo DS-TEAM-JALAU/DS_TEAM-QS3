@@ -11,7 +11,7 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in the Invalid Logradouro Test")
 });
 
-describe(" Invalid Logradouro @high", () => {
+describe(" Invalid Logradouro @high @error @regression", () => {
 
   test("should return status 400 a invalid 'logradouro' was provided", async () => {
     logger.info("Running should return status 400 a invalid 'logradouro' was provided")

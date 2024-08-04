@@ -30,6 +30,14 @@ npm run test:param --pattern="(@nomeDaTag|@segundaTag)"
 - @medium
 - @low
 
+### Tags de tipo de teste
+- @functional
+- @performance
+- @smoke
+- @error
+- @regression
+
+
 ## Funcionalidades
 As principais funcionalidades desse framework, são as seguintes:
 - **Geração de logs**: Utiliza do da ferramenta Pino para gerar loggings durante a execução.
