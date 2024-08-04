@@ -10,7 +10,7 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in Small Cep test")
 });
 
-describe("Small Cep", () => {
+describe("Small Cep @medium", () => {
   test("should return status code 400", async () => {
     logger.info("Running should return status code 400")
     let status;

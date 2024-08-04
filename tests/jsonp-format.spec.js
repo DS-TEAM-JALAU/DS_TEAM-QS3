@@ -10,7 +10,7 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in the jsonp format Test")
 });
 
-describe("Jsonp format", () => {
+describe("Jsonp format @low", () => {
   test("should return jsonp format if callback param provided", async () => {
     logger.info("Running should return jsonp format if callback param provided")
     const { headers } = await axiosInstance.get(

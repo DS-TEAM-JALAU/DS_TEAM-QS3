@@ -1,7 +1,7 @@
 # DS_TEAM-QS3
 Contém todos os códigos feitos para a cadeira de engenharia de qualidade de software 2 da Jala University. Vale mencionar que todos os códigos estão devidamente separados em suas branches, onde cada branch faz referencia a atividade e também a tarefa que ela tem referência.
 
-## Como rodar o código 
+## Como rodar o código
 
 Primeiro é necessário fazer a instalação das dependências para rodar o projeto.
 ```bash
@@ -12,6 +12,23 @@ Para rodar o projeto, temos que utilizar do comando abaixo para fazer a execuç�
 ```bash
 npm test
 ```
+### Como rodar o código com tag
+Para rodar o projeto usando uma tag, temos que utilizar do comando abaixo para fazer a execução dos testes com as determinadas tags.
+```bash
+npm run test:param --pattern="@nomeDaTag"
+```
+
+Para rodar o projeto usando mais tags, temos que utilizar do comando abaixo para fazer a execução dos testes com as determinadas tags.
+```bash
+npm run test:param --pattern="(@nomeDaTag|@segundaTag)"
+```
+
+## Tags
+
+### Tags de importancia
+- @high
+- @medium
+- @low
 
 ## Funcionalidades
 As principais funcionalidades desse framework, são as seguintes:
@@ -28,7 +45,7 @@ As principais funcionalidades desse framework, são as seguintes:
 - **test**: Componente com os códigos de testes automatizados.
 - **biome**: Componente responsável por fazer correções e indicações no código-fonte.
 
-## Dependências 
+## Dependências
 
 https://www.npmjs.com/package/axios - Biblioteca para realizar requisições HTTP.
 
@@ -40,7 +57,7 @@ https://www.npmjs.com/package/dotenv - Biblioteca de gerenciamento de variáveis
 
 https://www.npmjs.com/package/biome - Biblioteca para correção do código.
 
-## Autores 
+## Autores
 
 Hadja Costa - https://github.com/HadjaLorena
 

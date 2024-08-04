@@ -9,7 +9,7 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in the invalid url");
 });
 
-describe("Invalid url", () => {
+describe("Invalid url @high", () => {
   test("should return status code 400 if an invalid url was provided", async () => {
     logger.info(
       "Running should return status code 400 if an invalid url was provided"

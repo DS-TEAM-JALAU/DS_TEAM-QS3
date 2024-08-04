@@ -10,7 +10,7 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in the DS Team Test")
 });
 
-describe("Ds Team", () => {
+describe("Ds Team @low", () => {
   test("should return a XML type with encoding equal UTF-8", async () => {
     logger.info("Running should return a XML type with encoding equal UTF-8")
     const { data } = await axiosInstance.get(`/ws/01001000/xml`);

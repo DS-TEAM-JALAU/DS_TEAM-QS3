@@ -11,7 +11,7 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in XML format")
 });
 
-describe("XML format", () => {
+describe("XML format @low", () => {
   test("should return XML format if url param type XML was provided", async () => {
     logger.info("Running should return XML format if url param type XML was provided")
     const { headers } = await axiosInstance.get(`/ws/01001000/xml/`);

@@ -9,7 +9,7 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in the limit cep");
 });
 
-describe("Limit Cep", () => {
+describe("Limit Cep @medium", () => {
   test("should return 50 ceps", async () => {
     logger.info("Running should return a limit of 50 ceps");
     const { data } = await axiosInstance.get(`/ws/RS/Porto Alegre/Dom/json/`);

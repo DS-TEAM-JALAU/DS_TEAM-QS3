@@ -9,7 +9,7 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in the Logradouro with plus Test")
 });
 
-describe("Logradouro with plus", () => {
+describe("Logradouro with plus @low", () => {
   test("should return valid response when use + in 'logradouro'", async () => {
     logger.info("Running should return valid response when use + in 'logradouro")
     const { data } = await axiosInstance.get(

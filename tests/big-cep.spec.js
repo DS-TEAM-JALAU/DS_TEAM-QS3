@@ -10,7 +10,7 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in Big Cep test")
 });
 
-describe("Big Cep", () => {
+describe("Big Cep @medium", () => {
   test("should return status code 400", async () => {
     logger.info("Running should return status code 400")
     let status;

@@ -11,10 +11,10 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in the Invalid Logradouro Test")
 });
 
-describe(" Invalid Logradouro", () => {
+describe(" Invalid Logradouro @high", () => {
 
-  test("should return status bad request a invalid 'logradouro' was provided", async () => {
-    logger.info("Running should return status bad request a invalid 'logradouro' was provided")
+  test("should return status 400 a invalid 'logradouro' was provided", async () => {
+    logger.info("Running should return status 400 a invalid 'logradouro' was provided")
     let status;
     await axiosInstance.get(`/ws/RS/Porto Alegre/Do/json/`).catch((err) => {
       status = err.response.status;

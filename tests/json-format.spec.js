@@ -11,7 +11,7 @@ beforeAll(() => {
   logger.info("Set Request Manager Instance in Json format")
 });
 
-describe("Json format", () => {
+describe("Json format @high", () => {
   test("should return json format if url param type json was provided", async () => {
     logger.info("Running should return json format if url param type json was provided")
     const { headers } = await axiosInstance.get(`/ws/01001000/json/`);
