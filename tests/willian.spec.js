@@ -10,7 +10,7 @@ beforeAll(() => {
 });
 
 describe("Willian", () => {
-  test("should return a limit of 50 ceps @integration @smoke", async () => {
+  test("should return a limit of 50 ceps @integration git ", async () => {
     logger.info("Running should return a limit of 50 ceps");
     const { data } = await axiosInstance.get(`/ws/RS/Porto Alegre/Dom/json/`);
     expect(data.length).toBe(50);
