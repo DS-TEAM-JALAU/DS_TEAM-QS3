@@ -23,28 +23,32 @@ Para rodar o projeto usando mais tags, temos que utilizar do comando abaixo para
 npm run test:param --pattern="(@nomeDaTag|@segundaTag)"
 ```
 
-## Tags
+#### Tags
 
-### Tags de importancia
+##### Tags de importancia
 - @high
 - @medium
 - @low
 
-### Tags de tipo de teste
+##### Tags de tipo de teste
 - @functional
 - @performance
 - @smoke
 - @error
 - @regression
 
+## Visualizando o relatório de teste
+Depois de executar os testes, podemos ir dentro da pasta de "html-report" presente no código e abrimos o arquivo chamado "report.html". Ao abrir esse arquivo no navegador, teremos uma dashboard dos nossos testes feito no framework de teste.
+
 
 ## Funcionalidades
 As principais funcionalidades desse framework, são as seguintes:
 - **Geração de logs**: Utiliza do da ferramenta Pino para gerar loggings durante a execução.
-- **Utilização de variáveis de ambiente**: Gerenciador de variáveis de ambiente que permitem a utilização eficiente da mesma. 
+- **Utilização de variáveis de ambiente**: Gerenciador de variáveis de ambiente que permitem a utilização eficiente da mesma.
 - **Execução de testes automatizados**: Execução de testes automatizados com o Jest.
 - **Gerenciador de requisições**: Gerencia as requisições feitas com a ferramenta Axios a nossa API.
 - **Formatação de código**: Usamos o Biome para fazer analise do código e correções no código.
+- **Geração de relatório de testes**: Usando a biblioteca jest-html-reporters estamos fazendo a geração dos nosso relatórios de testes.
 
 ## Componentes
 - **env**: Componente responsável pelo gerenciamento de variáveis de ambiente.
@@ -64,6 +68,8 @@ https://www.npmjs.com/package/pino - Biblioteca de logging de alta performance.
 https://www.npmjs.com/package/dotenv - Biblioteca de gerenciamento de variáveis de ambiente.
 
 https://www.npmjs.com/package/biome - Biblioteca para correção do código.
+
+https://www.npmjs.com/package/jest-html-reporters - Biblioteca para geração dos relatórios de testes.
 
 ## Autores
 
