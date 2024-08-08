@@ -1,8 +1,10 @@
 name: CI
 
-name: Run Tests and Deploy Report
-
-on: [push]
+on:
+  push:
+    branches: [ labweek6 ]
+  pull_request:
+    branches: [ labweek6 ]
 
 jobs:
   test:
