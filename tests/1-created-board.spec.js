@@ -1,6 +1,7 @@
 import env from "../src/config/env.js";
 import { logger } from "../src/config/logger.js";
 import { AxiosSingleton } from "../src/request/request-manager.js";
+import {setIdBoard} from "../src/config/cache.js"
 
 jest.setTimeout(30000);
 
@@ -12,6 +13,10 @@ describe("Create test board", () =>{
     logger.info("Set Request Manager Instance")
     const name = "sofrimento"
     response = await axiosInstance.post(`${env.URL}1/boards/?name=${name}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&defaultLists=false`)
+  })
+
+  afterAll( () => {
+    setIdBoard(response.data.id)
   })
 
 
