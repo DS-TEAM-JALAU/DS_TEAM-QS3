@@ -38,7 +38,12 @@ npm run test:param --pattern="(@nomeDaTag|@segundaTag)"
 - @regression
 
 ## Visualizando o relatório de teste
+
+### Ao rodar os testes
 Depois de executar os testes, podemos ir dentro da pasta de "html-report" presente no código e abrimos o arquivo chamado "report.html". Ao abrir esse arquivo no navegador, teremos uma dashboard dos nossos testes feito no framework de teste.
+
+### Pelo Artifacts
+Indo na aba de Actions do GitHub e entrando no último workflow é possível achar no final da página o artefato que contem o relatório dos testes. Basta apenas baixar esse relatório, extrair o arquivo zip e executar o html que vai ser possível visualizar todo o relatório.
 
 
 ## Funcionalidades
