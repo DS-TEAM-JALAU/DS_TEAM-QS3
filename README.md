@@ -1,5 +1,5 @@
 # DS_TEAM-QS3
-Contém todos os códigos feitos para a cadeira de engenharia de qualidade de software 2 da Jala University. Vale mencionar que todos os códigos estão devidamente separados em suas branches, onde cada branch faz referencia a atividade e também a tarefa que ela tem referência.
+Essa é uma atividade extra que via fazer testes de e2e na API Rest da ferramenta do Trello fazendo todos os testes da criação dos boards até a criação de cards e listas.
 
 ## Como rodar o código
 
@@ -12,6 +12,7 @@ Para rodar o projeto, temos que utilizar do comando abaixo para fazer a execuç�
 ```bash
 npm test
 ```
+
 ### Como rodar o código com tag
 Para rodar o projeto usando uma tag, temos que utilizar do comando abaixo para fazer a execução dos testes com as determinadas tags.
 ```bash

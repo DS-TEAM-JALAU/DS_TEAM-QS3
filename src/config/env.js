@@ -3,5 +3,7 @@ import { config } from "dotenv";
 config();
 
 export default {
-  URL: process.env.URL || "https://viacep.com.br/",
+  API_KEY: process.env.API_KEY,
+  TOKEN_KEY: process.env.TOKEN_KEY,
+  URL: process.env.URL,
 };
