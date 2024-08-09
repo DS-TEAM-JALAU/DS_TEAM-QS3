@@ -6,14 +6,18 @@ jest.setTimeout(30000);
 
 let boardId;
 const listIds = [];
+const cardsIdList =[]
+let axiosInstance;
+
+beforeAll(() =>{
+  axiosInstance = AxiosSingleton.getInstance();
+  logger.info("Set Request Manager Instance")
+})
 
 describe("Create test board", () =>{
-  let axiosInstance;
   let response
   const name = "DS"
   beforeAll( async () =>{
-    axiosInstance = AxiosSingleton.getInstance();
-    logger.info("Set Request Manager Instance")
     response = await axiosInstance.post(`${env.URL}1/boards/?name=${name}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&defaultLists=false`)
   })
 
@@ -38,7 +42,6 @@ describe("Create test board", () =>{
 })
 
 describe("Create list at the board", () =>{
-  let axiosInstance;
   let responseTodo;
   let responseProgress;
   let responseFinished
@@ -46,8 +49,6 @@ describe("Create list at the board", () =>{
   const progress = "Em Progresso"
   const finish = "Finalizado"
   beforeAll( async () =>{
-    axiosInstance = AxiosSingleton.getInstance();
-    logger.info("Set Request Manager Instance")
     responseFinished = await axiosInstance.post(`${env.URL}1/boards/${boardId}/lists?name=${finish}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
     responseProgress = await axiosInstance.post(`${env.URL}1/boards/${boardId}/lists?name=${progress}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
     responseTodo = await axiosInstance.post(`${env.URL}1/boards/${boardId}/lists?name=${todo}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
@@ -99,3 +100,57 @@ describe("Create list at the board", () =>{
   })
 
 })
+
+describe("Create a cards at the lists", () =>{
+  let nameCardTest = "Hello World"
+  let responseCardTest1;
+  let responseCardTest2;
+  let responseCardTest3;
+  beforeAll( async () => {
+    responseCardTest1 = await axiosInstance.post(`${env.URL}1/cards?idList=${listIds[0]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${nameCardTest}`)
+    responseCardTest2 = await axiosInstance.post(`${env.URL}1/cards?idList=${listIds[1]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${nameCardTest}`)
+    responseCardTest3 = await axiosInstance.post(`${env.URL}1/cards?idList=${listIds[2]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${nameCardTest}`)
+
+  })
+  afterAll(() =>{
+    cardsIdList[0] = responseCardTest1.data.id
+    cardsIdList[1] = responseCardTest2.data.id
+    cardsIdList[2] = responseCardTest3.data.id
+  })
+  it("should return status 200 when a card is created in the list 'A Fazer'", () =>{
+    const status = responseCardTest1.status
+    expect(status).toBe(200)
+  })
+  it("should return status text OK when a card is created in the list 'A Fazer'", () =>{
+    const statusText = responseCardTest1.statusText
+    expect(statusText).toBe("OK")
+  })
+  it("should return the name 'Hello World' when a card is created in the list 'A Fazer'", () =>{
+    const name = responseCardTest1.data.name
+    expect(name).toBe(nameCardTest)
+  })
+  it("should return status 200 when a card is created in the list 'Em Progresso'", () =>{
+    const status = responseCardTest1.status
+    expect(status).toBe(200)
+  })
+  it("should return status text OK when a card is created in the list 'Em Progresso'", () =>{
+    const statusText = responseCardTest1.statusText
+    expect(statusText).toBe("OK")
+  })
+  it("should return the name 'Hello World' when a card is created in the list 'Em Progresso'", () =>{
+    const name = responseCardTest1.data.name
+    expect(name).toBe(nameCardTest)
+  })
+  it("should return status 200 when a card is created in the list 'Finalizado'", () =>{
+    const status = responseCardTest1.status
+    expect(status).toBe(200)
+  })
+  it("should return status text OK when a card is created in the list 'Finalizado'", () =>{
+    const statusText = responseCardTest1.statusText
+    expect(statusText).toBe("OK")
+  })
+  it("should return the name 'Hello World' when a card is created in the list 'Finalizado'", () =>{
+    const name = responseCardTest1.data.name
+    expect(name).toBe(nameCardTest)
+  })
+} )
