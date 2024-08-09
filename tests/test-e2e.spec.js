@@ -7,6 +7,7 @@ jest.setTimeout(30000);
 let boardId;
 const listIds = [];
 const cardsIdList =[]
+const checkListsId = []
 let axiosInstance;
 
 beforeAll(() =>{
@@ -110,7 +111,6 @@ describe("Create a cards at the lists", () =>{
     responseCardTest1 = await axiosInstance.post(`${env.URL}1/cards?idList=${listIds[0]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${nameCardTest}`)
     responseCardTest2 = await axiosInstance.post(`${env.URL}1/cards?idList=${listIds[1]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${nameCardTest}`)
     responseCardTest3 = await axiosInstance.post(`${env.URL}1/cards?idList=${listIds[2]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${nameCardTest}`)
-
   })
   afterAll(() =>{
     cardsIdList[0] = responseCardTest1.data.id
@@ -130,27 +130,80 @@ describe("Create a cards at the lists", () =>{
     expect(name).toBe(nameCardTest)
   })
   it("should return status 200 when a card is created in the list 'Em Progresso'", () =>{
-    const status = responseCardTest1.status
+    const status = responseCardTest2.status
     expect(status).toBe(200)
   })
   it("should return status text OK when a card is created in the list 'Em Progresso'", () =>{
-    const statusText = responseCardTest1.statusText
+    const statusText = responseCardTest2.statusText
     expect(statusText).toBe("OK")
   })
   it("should return the name 'Hello World' when a card is created in the list 'Em Progresso'", () =>{
-    const name = responseCardTest1.data.name
+    const name = responseCardTest2.data.name
     expect(name).toBe(nameCardTest)
   })
   it("should return status 200 when a card is created in the list 'Finalizado'", () =>{
-    const status = responseCardTest1.status
+    const status = responseCardTest3.status
     expect(status).toBe(200)
   })
   it("should return status text OK when a card is created in the list 'Finalizado'", () =>{
-    const statusText = responseCardTest1.statusText
+    const statusText = responseCardTest3.statusText
     expect(statusText).toBe("OK")
   })
   it("should return the name 'Hello World' when a card is created in the list 'Finalizado'", () =>{
-    const name = responseCardTest1.data.name
+    const name = responseCardTest3.data.name
     expect(name).toBe(nameCardTest)
   })
 } )
+
+describe("Create a checklist at the cards", () =>{
+  let checkListName = "Assignments for today"
+  let responseCheckList1;
+  let responseCheckList2;
+  let responseCheckList3;
+  beforeAll( async () => {
+    responseCheckList1 = await axiosInstance.post(`${env.URL}1/checklists?idCard=${cardsIdList[0]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${checkListName}`)
+    responseCheckList2 = await axiosInstance.post(`${env.URL}1/checklists?idCard=${cardsIdList[1]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${checkListName}`)
+    responseCheckList3 = await axiosInstance.post(`${env.URL}1/checklists?idCard=${cardsIdList[2]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${checkListName}`)
+  })
+  afterAll(() =>{
+    checkListsId[0] = responseCheckList1.data.id
+    checkListsId[1] = responseCheckList1.data.id
+    checkListsId[2] = responseCheckList1.data.id
+  })
+  it("should return status 200 when creating a checklist in the card 'Hello World in the list 'A Fazer'", ()=>{
+    const status = responseCheckList1.status
+    expect(status).toBe(200)
+  })
+  it("should return status text OK when creating a checklist in the card 'Hello World in the list 'A Fazer'", ()=>{
+    const statusText = responseCheckList1.statusText
+    expect(statusText).toBe("OK")
+  })
+  it("should return name 'Assignments for today' when creating a checklist in the card 'Hello World in the list 'A Fazer'", ()=>{
+    const name = responseCheckList1.data.name
+    expect(name).toBe(checkListName)
+  })
+  it("should return status 200 when creating a checklist in the card 'Hello World in the list 'Em Progresso'", ()=>{
+    const status = responseCheckList2.status
+    expect(status).toBe(200)
+  })
+  it("should return status text OK when creating a checklist in the card 'Hello World in the list 'Em Progresso'", ()=>{
+    const statusText = responseCheckList2.statusText
+    expect(statusText).toBe("OK")
+  })
+  it("should return name 'Assignments for today' when creating a checklist in the card 'Hello World in the list 'Em Progresso'", ()=>{
+    const name = responseCheckList2.data.name
+    expect(name).toBe(checkListName)
+  })
+  it("should return status 200 when creating a checklist in the card 'Hello World in the list 'Finalizado'", ()=>{
+    const status = responseCheckList3.status
+    expect(status).toBe(200)
+  })
+  it("should return status text OK when creating a checklist in the card 'Hello World in the list 'Finalizado'", ()=>{
+    const statusText = responseCheckList3.statusText
+    expect(statusText).toBe("OK")
+  })
+  it("should return name 'Assignments for today' when creating a checklist in the card 'Hello World in the list 'Finalizado'", ()=>{
+    const name = responseCheckList3.data.name
+    expect(name).toBe(checkListName)
+  })
+})
