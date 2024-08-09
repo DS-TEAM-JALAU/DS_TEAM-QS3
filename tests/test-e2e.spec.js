@@ -5,14 +5,23 @@ import { AxiosSingleton } from "../src/request/request-manager.js";
 jest.setTimeout(30000);
 
 let boardId;
-const listIds = [];
-const cardsIdList =[]
-const checkListsId = []
+let listIds = [];
+let cardsIdList =[]
+let checkListsId = []
 let axiosInstance;
 
 beforeAll(() =>{
   axiosInstance = AxiosSingleton.getInstance();
   logger.info("Set Request Manager Instance")
+})
+
+afterAll( async () => {
+  await axiosInstance.delete(`${env.URL}1/boards/${boardId}?&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
+  boardId=undefined;
+  listIds = [];
+  cardsIdList =[]
+  checkListsId = []
+  axiosInstance=undefined;
 })
 
 describe("Create test board", () =>{
@@ -167,8 +176,8 @@ describe("Create a checklist at the cards", () =>{
   })
   afterAll(() =>{
     checkListsId[0] = responseCheckList1.data.id
-    checkListsId[1] = responseCheckList1.data.id
-    checkListsId[2] = responseCheckList1.data.id
+    checkListsId[1] = responseCheckList2.data.id
+    checkListsId[2] = responseCheckList3.data.id
   })
   it("should return status 200 when creating a checklist in the card 'Hello World in the list 'A Fazer'", ()=>{
     const status = responseCheckList1.status
@@ -205,5 +214,109 @@ describe("Create a checklist at the cards", () =>{
   it("should return name 'Assignments for today' when creating a checklist in the card 'Hello World in the list 'Finalizado'", ()=>{
     const name = responseCheckList3.data.name
     expect(name).toBe(checkListName)
+  })
+})
+describe("Create a check item at the checklist", ()=>{
+  let checkItemName1 = "Work at the software quality lab"
+  let checkItemName2 = "Meeting with the software quality team"
+  let responseCheckListItens1CheckList1;
+  let responseCheckListItens2CheckList1;
+  let responseCheckListItens1CheckList2;
+  let responseCheckListItens2CheckList2;
+  let responseCheckListItens1CheckList3;
+  let responseCheckListItens2CheckList3;
+  beforeAll(async () =>{
+    responseCheckListItens1CheckList1 = await axiosInstance.post(`${env.URL}1/checklists/${checkListsId[0]}/checkItems?name=${checkItemName1}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
+    responseCheckListItens2CheckList1 = await axiosInstance.post(`${env.URL}1/checklists/${checkListsId[0]}/checkItems?name=${checkItemName2}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&checked=true`)
+
+    responseCheckListItens1CheckList2 = await axiosInstance.post(`${env.URL}1/checklists/${checkListsId[1]}/checkItems?name=${checkItemName1}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
+    responseCheckListItens2CheckList2 = await axiosInstance.post(`${env.URL}1/checklists/${checkListsId[1]}/checkItems?name=${checkItemName2}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&checked=true`)
+
+    responseCheckListItens1CheckList3 = await axiosInstance.post(`${env.URL}1/checklists/${checkListsId[2]}/checkItems?name=${checkItemName1}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
+    responseCheckListItens2CheckList3 = await axiosInstance.post(`${env.URL}1/checklists/${checkListsId[2]}/checkItems?name=${checkItemName2}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&checked=true`)
+  })
+  it("should a return a status 200 when create a check item in the checklist at card 'A Fazer'", () =>{
+    const status = responseCheckListItens1CheckList1.status
+    expect(status).toBe(200)
+  })
+  it("should a return a status 200 when create a check item checked in the checklist at card 'A Fazer'", () =>{
+    const status = responseCheckListItens2CheckList1.status
+    expect(status).toBe(200)
+  })
+  it("should a return a status 200 when create a check item in the checklist at card 'Em Progresso'", () =>{
+    const status = responseCheckListItens1CheckList2.status
+    expect(status).toBe(200)
+  })
+  it("should a return a status 200 when create a check item checked in the checklist at card 'Em Progresso'", () =>{
+    const status = responseCheckListItens2CheckList2.status
+    expect(status).toBe(200)
+  })
+  it("should a return a status 200 when create a check item in the checklist at card 'Finalizado'", () =>{
+    const status = responseCheckListItens1CheckList3.status
+    expect(status).toBe(200)
+  })
+  it("should a return a status 200 when create a check item checked in the checklist at card 'Finalizado'", () =>{
+    const status = responseCheckListItens2CheckList3.status
+    expect(status).toBe(200)
+  })
+  it("should a return a status text ok when create a check item in the checklist at card 'A Fazer'", () =>{
+    const statusText = responseCheckListItens1CheckList1.statusText
+    expect(statusText).toBe("OK")
+  })
+  it("should a return a status text OK when create a check item checked in the checklist at card 'A Fazer'", () =>{
+    const statusText = responseCheckListItens2CheckList1.statusText
+    expect(statusText).toBe("OK")
+  })
+  it("should a return a status text OK when create a check item in the checklist at card 'Em Progresso'", () =>{
+    const statusText = responseCheckListItens1CheckList2.statusText
+    expect(statusText).toBe("OK")
+  })
+  it("should a return a status text OK when create a check item checked in the checklist at card 'Em Progresso'", () =>{
+    const statusText = responseCheckListItens2CheckList2.statusText
+    expect(statusText).toBe("OK")
+  })
+  it("should a return a status text OK when create a check item in the checklist at card 'Finalizado'", () =>{
+    const statusText = responseCheckListItens1CheckList3.statusText
+    expect(statusText).toBe("OK")
+  })
+  it("should a return a status text OK when create a check item checked in the checklist at card 'Finalizado'", () =>{
+    const statusText = responseCheckListItens2CheckList3.statusText
+    expect(statusText).toBe("OK")
+  })
+  it("should a return a name 'work at the software quality lab' when create a check item in the checklist at card 'A Fazer'", () =>{
+    const name = responseCheckListItens1CheckList1.data.name
+    expect(name).toBe(checkItemName1)
+  })
+  it("should a return a name 'work at the software quality lab' when create a check item checked in the checklist at card 'A Fazer'", () =>{
+    const name = responseCheckListItens1CheckList2.data.name
+    expect(name).toBe(checkItemName1)
+  })
+  it("should a return a name 'work at the software quality lab' when create a check item in the checklist at card 'Em Progresso'", () =>{
+    const name = responseCheckListItens1CheckList3.data.name
+    expect(name).toBe(checkItemName1)
+  })
+  it("should a return a name 'Meeting with the software quality team' when create a check item checked in the checklist at card 'Em Progresso'", () =>{
+    const name = responseCheckListItens2CheckList1.data.name
+    expect(name).toBe(checkItemName2)
+  })
+  it("should a return a name 'Meeting with the software quality team' when create a check item in the checklist at card 'Finalizado'", () =>{
+    const name = responseCheckListItens2CheckList2.data.name
+    expect(name).toBe(checkItemName2)
+  })
+  it("should a return a name 'Meeting with the software quality team' when create a check item checked in the checklist at card 'Finalizado'", () =>{
+    const name = responseCheckListItens2CheckList3.data.name
+    expect(name).toBe(checkItemName2)
+  })
+  it("should a return the complete item in the checklist at card 'A Fazer'", () =>{
+    const state = responseCheckListItens2CheckList1.data.state
+    expect(state).toBe("complete")
+  })
+  it("should a return the complete item in the checklist at card 'Em Progresso'", () =>{
+    const state = responseCheckListItens2CheckList2.data.state
+    expect(state).toBe("complete")
+  })
+  it("should a return the complete item in the checklist at card 'Finalizado'", () =>{
+    const state = responseCheckListItens2CheckList3.data.state
+    expect(state).toBe("complete")
   })
 })
