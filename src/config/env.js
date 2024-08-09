@@ -5,5 +5,5 @@ config();
 export default {
   API_KEY: process.env.API_KEY,
   TOKEN_KEY: process.env.TOKEN_KEY,
-  URL_TRELLO: process.env.URL,
+  URL_TRELLO: process.env.URL_TRELLO,
 };

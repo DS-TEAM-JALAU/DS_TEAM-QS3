@@ -16,7 +16,7 @@ beforeAll(() =>{
 })
 
 afterAll( async () => {
-  await axiosInstance.delete(`${env.URL}1/boards/${boardId}?&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
+  await axiosInstance.delete(`${env.URL_TRELLO}1/boards/${boardId}?&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
   boardId=undefined;
   listIds = [];
   cardsIdList =[]
@@ -28,7 +28,7 @@ describe("Create test board", () =>{
   let response
   const name = "DS"
   beforeAll( async () =>{
-    response = await axiosInstance.post(`${env.URL}1/boards/?name=${name}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&defaultLists=false`)
+    response = await axiosInstance.post(`${env.URL_TRELLO}1/boards/?name=${name}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&defaultLists=false`)
   })
 
   afterAll(()=>{
@@ -59,9 +59,9 @@ describe("Create list at the board", () =>{
   const progress = "Em Progresso"
   const finish = "Finalizado"
   beforeAll( async () =>{
-    responseFinished = await axiosInstance.post(`${env.URL}1/boards/${boardId}/lists?name=${finish}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
-    responseProgress = await axiosInstance.post(`${env.URL}1/boards/${boardId}/lists?name=${progress}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
-    responseTodo = await axiosInstance.post(`${env.URL}1/boards/${boardId}/lists?name=${todo}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
+    responseFinished = await axiosInstance.post(`${env.URL_TRELLO}1/boards/${boardId}/lists?name=${finish}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
+    responseProgress = await axiosInstance.post(`${env.URL_TRELLO}1/boards/${boardId}/lists?name=${progress}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
+    responseTodo = await axiosInstance.post(`${env.URL_TRELLO}1/boards/${boardId}/lists?name=${todo}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
   })
   afterAll(()=>{
     listIds[0] = responseTodo.data.id
@@ -117,9 +117,9 @@ describe("Create a cards at the lists", () =>{
   let responseCardTest2;
   let responseCardTest3;
   beforeAll( async () => {
-    responseCardTest1 = await axiosInstance.post(`${env.URL}1/cards?idList=${listIds[0]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${nameCardTest}`)
-    responseCardTest2 = await axiosInstance.post(`${env.URL}1/cards?idList=${listIds[1]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${nameCardTest}`)
-    responseCardTest3 = await axiosInstance.post(`${env.URL}1/cards?idList=${listIds[2]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${nameCardTest}`)
+    responseCardTest1 = await axiosInstance.post(`${env.URL_TRELLO}1/cards?idList=${listIds[0]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${nameCardTest}`)
+    responseCardTest2 = await axiosInstance.post(`${env.URL_TRELLO}1/cards?idList=${listIds[1]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${nameCardTest}`)
+    responseCardTest3 = await axiosInstance.post(`${env.URL_TRELLO}1/cards?idList=${listIds[2]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${nameCardTest}`)
   })
   afterAll(() =>{
     cardsIdList[0] = responseCardTest1.data.id
@@ -170,9 +170,9 @@ describe("Create a checklist at the cards", () =>{
   let responseCheckList2;
   let responseCheckList3;
   beforeAll( async () => {
-    responseCheckList1 = await axiosInstance.post(`${env.URL}1/checklists?idCard=${cardsIdList[0]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${checkListName}`)
-    responseCheckList2 = await axiosInstance.post(`${env.URL}1/checklists?idCard=${cardsIdList[1]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${checkListName}`)
-    responseCheckList3 = await axiosInstance.post(`${env.URL}1/checklists?idCard=${cardsIdList[2]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${checkListName}`)
+    responseCheckList1 = await axiosInstance.post(`${env.URL_TRELLO}1/checklists?idCard=${cardsIdList[0]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${checkListName}`)
+    responseCheckList2 = await axiosInstance.post(`${env.URL_TRELLO}1/checklists?idCard=${cardsIdList[1]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${checkListName}`)
+    responseCheckList3 = await axiosInstance.post(`${env.URL_TRELLO}1/checklists?idCard=${cardsIdList[2]}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&name=${checkListName}`)
   })
   afterAll(() =>{
     checkListsId[0] = responseCheckList1.data.id
@@ -226,14 +226,14 @@ describe("Create a check item at the checklist", ()=>{
   let responseCheckListItens1CheckList3;
   let responseCheckListItens2CheckList3;
   beforeAll(async () =>{
-    responseCheckListItens1CheckList1 = await axiosInstance.post(`${env.URL}1/checklists/${checkListsId[0]}/checkItems?name=${checkItemName1}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
-    responseCheckListItens2CheckList1 = await axiosInstance.post(`${env.URL}1/checklists/${checkListsId[0]}/checkItems?name=${checkItemName2}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&checked=true`)
+    responseCheckListItens1CheckList1 = await axiosInstance.post(`${env.URL_TRELLO}1/checklists/${checkListsId[0]}/checkItems?name=${checkItemName1}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
+    responseCheckListItens2CheckList1 = await axiosInstance.post(`${env.URL_TRELLO}1/checklists/${checkListsId[0]}/checkItems?name=${checkItemName2}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&checked=true`)
 
-    responseCheckListItens1CheckList2 = await axiosInstance.post(`${env.URL}1/checklists/${checkListsId[1]}/checkItems?name=${checkItemName1}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
-    responseCheckListItens2CheckList2 = await axiosInstance.post(`${env.URL}1/checklists/${checkListsId[1]}/checkItems?name=${checkItemName2}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&checked=true`)
+    responseCheckListItens1CheckList2 = await axiosInstance.post(`${env.URL_TRELLO}1/checklists/${checkListsId[1]}/checkItems?name=${checkItemName1}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
+    responseCheckListItens2CheckList2 = await axiosInstance.post(`${env.URL_TRELLO}1/checklists/${checkListsId[1]}/checkItems?name=${checkItemName2}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&checked=true`)
 
-    responseCheckListItens1CheckList3 = await axiosInstance.post(`${env.URL}1/checklists/${checkListsId[2]}/checkItems?name=${checkItemName1}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
-    responseCheckListItens2CheckList3 = await axiosInstance.post(`${env.URL}1/checklists/${checkListsId[2]}/checkItems?name=${checkItemName2}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&checked=true`)
+    responseCheckListItens1CheckList3 = await axiosInstance.post(`${env.URL_TRELLO}1/checklists/${checkListsId[2]}/checkItems?name=${checkItemName1}&key=${env.API_KEY}&token=${env.TOKEN_KEY}`)
+    responseCheckListItens2CheckList3 = await axiosInstance.post(`${env.URL_TRELLO}1/checklists/${checkListsId[2]}/checkItems?name=${checkItemName2}&key=${env.API_KEY}&token=${env.TOKEN_KEY}&checked=true`)
   })
   it("should a return a status 200 when create a check item in the checklist at card 'A Fazer'", () =>{
     const status = responseCheckListItens1CheckList1.status
