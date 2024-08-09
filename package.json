@@ -10,7 +10,8 @@
     "test": "jest --runInBand",
     "test:dev": "jest --watch",
     "lint:fix": "biome check --write --unsafe",
-    "test:param": "jest -t \"$npm_config_pattern\""
+    "test:param": "jest -t \"$npm_config_pattern\"",
+    "coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
